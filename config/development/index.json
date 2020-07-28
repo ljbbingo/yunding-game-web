@@ -1,6 +1,0 @@
-{
-    "db": "mongodb://127.0.0.1/hanhandb",
-    "redisconfig": {
-        "host": "127.0.0.1"
-    }
-}
