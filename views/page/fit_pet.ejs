@@ -1,0 +1,55 @@
+<div class="layui-row" style=" border: 1px solid #ccc;text-align: center;">
+    <div class="layui-row">
+        <div class="layui-col-md4">
+            <select name="" style="width: 100%;" id="fit-pet-a">
+
+            </select>
+        </div>
+        <div class="layui-col-md4">
+            <input type="button" value="预览" class="layui-btn layui-btn-normal layui-btn-xs" onclick="showFitPetFunc()">
+            <input type="button" value="合成" class="layui-btn layui-btn-danger layui-btn-xs" onclick="subFitPetFunc()">
+        </div>
+        <div class="layui-col-md4">
+            <select name="" style="width: 100%;" id="fit-pet-b">
+
+            </select>
+        </div>
+    </div>
+    <div class="layui-row" style="margin-top: 10px;">
+        <p style="color: white;">消耗20点活力、5w灵石</p>
+        <h6 style="color:white;">随机出宠，可能拥有的资质和技能</h6>
+        <div class="layui-col-md6">
+            <table class="layui-table" style="margin: 0;text-align: center;">
+                <colgroup>
+                    <col width="35.5%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>成长:<span id="fit_growing_num">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>攻击资质:<span id="fit_str_zz">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>防御资质:<span id="fit_vit_zz">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>体力资质:<span id="fit_con_zz">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>法力资质:<span id="fit_int_zz">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>速度资质:<span id="fit_speed_zz">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>躲避资质:<span id="fit_dodge_zz">-</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-col-md6" id="fit-pet-skills">
+
+        </div>
+    </div>
+</div>

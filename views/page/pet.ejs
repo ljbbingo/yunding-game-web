@@ -1,0 +1,53 @@
+<div class="layui-row">
+    &nbsp;<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" onclick="changeTurnIntoEggFunc()"
+        value="合宠">
+    &nbsp;<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" onclick="addUserPetSkillFunc()"
+        value="打书">
+</div>
+<hr>
+<div class="layui-row" id="">
+
+    <div class="layui-col-sm4" style="padding: 5px;">
+        <div class="layui-row" style="overflow-y:auto;height: 130px;border-bottom: 1px solid #ccc;">
+            <table class="layui-table" style="margin: 0;text-align: center;">
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td>等级</td>
+                        <td>昵称</td>
+                        <!-- <td>原型</td> -->
+                    </tr>
+                </thead>
+                <tbody id="pet-tab-list">
+                    <!-- <tr class="pet-list-tr">
+                        <td>30</td>
+                        <td>小狐狸哦</td>
+                        <td>小狐狸</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-row" style="margin-top: 10px;">
+            <div id="pet-skills">
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-sm8" style="padding: 5px;position: relative;">
+        <div class="pet-info layui-row">
+            <table class="layui-table" style="margin: 0;">
+                <colgroup>
+                    <col width="35.5%">
+                    <col width="32.5%">
+                    <col width="32%">
+                </colgroup>
+                <tbody id="pet-info">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

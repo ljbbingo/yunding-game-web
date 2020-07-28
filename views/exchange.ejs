@@ -1,0 +1,128 @@
+<%- include ./layout/header %>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel='stylesheet' href='/style.css' />
+<style>
+    html,
+    body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .main {
+        background-image: url('img/bg2.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100%;
+        height: 100%;
+        background-repeat: repeat;
+        font-size: 13px;
+    }
+
+    .layui-form-item input {
+        width: 300px;
+        margin: auto;
+    }
+
+    .login-btn {
+        background-color: cadetblue;
+        border-color: cadetblue;
+        color: white;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        width: 300px;
+    }
+
+    .login-div {
+        margin: 200px auto;
+        width: 500px;
+        background: #fff;
+        padding: 8px 20px 7px 20px;
+        border-radius: 3px;
+        box-shadow: 0px 0px 20px rgba(136, 136, 136, 0.19);
+    }
+
+    .resiger-tip {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .titles {
+        text-align: center;
+        color: #26c5a1;
+        margin-bottom: 30px;
+    }
+
+    .login_btn {
+        background-color: cadetblue;
+        border-color: cadetblue;
+    }
+
+    .login_btn:hover {
+        background-color: cadetblue;
+        border-color: cadetblue;
+    }
+
+    .login_btn:active {
+        background-color: cadetblue;
+        border-color: cadetblue;
+    }
+
+    .login_btn:focus {
+        background-color: cadetblue;
+        border-color: cadetblue;
+    }
+
+    .login_btn:active:focus {
+        background-color: cadetblue;
+        border-color: cadetblue;
+    }
+
+
+    .resiger-tip:hover .prompt-box {
+        display: inline-block;
+
+    }
+</style>
+<div class="bg">
+    <div class="login-div">
+        <h1 class="titles">《云顶修仙Online》</h1>
+        <div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="volume" placeholder="请输入兑换码">
+            </div>
+            <div class="form-group">
+                <input class=" btn-primary btn  btn-block login_btn" type="button" value="立即兑换" onclick="subFunc()">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+    <p><a style="color: #fff;" href="yundingxx.com:8888" target="__bank">yundingxx.com</a></p>
+</div>
+<%- include ./layout/footer %>
+
+<script>
+    var subFunc = function () {
+        var volume = $('#volume').val();
+        var email = $('#email').val()
+        if (!email) {
+            alert("输入有误！")
+            return;
+        }
+        if (!volume) {
+            alert("输入有误！")
+            return;
+        }
+
+        $.post('/api/exchangeVolume', { email: email, volume: volume }, function (res) {
+            alert(res.msg)
+        })
+    }
+</script>

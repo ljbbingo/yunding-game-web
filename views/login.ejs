@@ -1,0 +1,125 @@
+<%- include ./layout/header %>
+<style>
+    html,
+    body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .main {
+        background-image: url('img/bg2.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100%;
+        height: 100%;
+        background-repeat: repeat;
+        font-size: 13px;
+    }
+
+    .layui-form-item input {
+        width: 300px;
+        margin: auto;
+    }
+
+    .login-btn {
+        background-color: cadetblue;
+        border-color: cadetblue;
+        color: white;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        width: 300px;
+    }
+
+    .login-div {
+        margin: auto;
+        width: 350px;
+        background: #fff;
+        padding: 8px 20px 7px 20px;
+        border-radius: 3px;
+        box-shadow: 0px 0px 20px rgba(136, 136, 136, 0.19);
+    }
+
+    .resiger-tip {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .resiger-tip:hover .prompt-box {
+        display: inline-block;
+
+    }
+
+    .resiger-tip .prompt-box {
+        background-color: white;
+        border: solid 1px black;
+        text-align: left;
+        padding-left: 10px;
+        font-size: 12px;
+        position: absolute;
+        right: -220px;
+        display: none;
+        z-index: 333;
+        color: #888;
+        width: 200px;
+    }
+
+    #img-code svg {
+        height: 38px;
+    }
+</style>
+<div class="layui-row">
+    <div class="layui-col-xs12 head-bar">
+    </div>
+</div>
+<div class="layui-container main">
+    <div class="layui-row">
+        <div class="login-div">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                    <input type="text" name="email" id="email" value="" autocomplete="off"
+                        placeholder="请输入游戏名(5位以内，将作为游戏名)" lay-verify="required" lay-reqtext="用户名必填项，岂能为空？"
+                        class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <input type="password" id="pwd" name="pwd" value="" lay-verify="required" lay-reqtext="密码是必填项，岂能为空？"
+                        placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div id="img-code" class="layui-col-sm6">
+                        </div>
+                        <div class="layui-col-sm6" style="float: right;">
+                            <a style="width:inherit;color:teal;cursor: pointer;" onclick="sendEmailCodeFunc()"
+                                id='sub-code'>获取验证</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <input type="text" id="emailCode" class="layui-input" placeholder="请输入验证码">
+                </div>
+
+                <div class="layui-form-item" style="text-align: center;">
+                    <button type="submit" lay-submit="" lay-filter="login" id='login-sub'
+                        class="login-btn layui-btn layui-btn-primary">立即登录</button>
+                    <div class="layui-input-block" style="margin-top: 5px;">
+                        <span>还没账号？</span><span class="resiger-tip"><a href="javascript:;" style="color: teal;"
+                                class="">如何登录</a> .
+                            <span class="prompt-box">tip:输入你的账号密码，没有注册过则会自动创建账号并登录</span>
+                        </span>
+                        <!-- <input type="checkbox" checked="" name="save_pwd" lay-skin="switch" lay-filter="switchPwd"
+                                lay-text="记住密码|否"> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<%- include ./layout/footer %>
+<script>
+    var __encode = 'sojson.com', _a = {}, _0xb483 = ["\x5F\x64\x65\x63\x6F\x64\x65", "\x68\x74\x74\x70\x3A\x2F\x2F\x77\x77\x77\x2E\x73\x6F\x6A\x73\x6F\x6E\x2E\x63\x6F\x6D\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x6F\x62\x66\x75\x73\x63\x61\x74\x6F\x72\x2E\x68\x74\x6D\x6C"]; (function (_0xd642x1) { _0xd642x1[_0xb483[0]] = _0xb483[1] })(_a); var __Ox89f4c = ["\x69\x73\x5F\x72", "\x69\x6E\x64\x65\x78\x4F\x66", "\x68\x72\x65\x66", "\x6C\x6F\x63\x61\x74\x69\x6F\x6E", "\x72\x65\x6D\x6F\x76\x65", "\x2E\x74\x6F\x70\x2D\x62\x61\x72", "\x65\x6D\x61\x69\x6C", "\x67\x65\x74\x49\x74\x65\x6D", "\x70\x77\x64", "\x76\x61\x6C", "\x23\x65\x6D\x61\x69\x6C", "\x23\x70\x77\x64", "\x70\x6F\x6D\x65\x6C\x6F", "\x3F", "", "\x72\x65\x70\x6C\x61\x63\x65", "\x70\x75\x73\x68\x53\x74\x61\x74\x65", "\x68\x69\x73\x74\x6F\x72\x79", "\x67\x61\x74\x65\x2E\x67\x61\x74\x65\x48\x61\x6E\x64\x6C\x65\x72\x2E\x71\x75\x65\x72\x79\x45\x6E\x74\x72\x79", "\x68\x6F\x73\x74\x6E\x61\x6D\x65", "\x23\x65\x6D\x61\x69\x6C\x43\x6F\x64\x65", "\x64\x69\x73\x63\x6F\x6E\x6E\x65\x63\x74", "\x63\x6F\x64\x65", "\x6D\x73\x67", "\x35\x30\x25", "\x73\x65\x74\x49\x74\x65\x6D", "\x72\x65\x71\x75\x65\x73\x74", "\x69\x6E\x69\x74", "\x6C\x61\x79\x65\x72", "\x66\x6F\x72\x6D", "\x65\x6C\x65\x6D\x65\x6E\x74", "\x72\x65\x6E\x64\x65\x72", "\x73\x75\x62\x6D\x69\x74\x28\x6C\x6F\x67\x69\x6E\x29", "\x6C\x65\x6E\x67\x74\x68", "\x66\x69\x65\x6C\x64", "\u7528\u6237\u540D\u4E0D\u5F97\u8D85\u8FC7\x36\u4F4D\uFF01", "\u5BC6\u7801\u4E0D\u5F97\u5C11\u4E8E\x36\u4F4D\uFF01", "\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801", "\u65AD\u7EBF\u91CD\u8FDE\u4E2D\x2E\x2E\x2E", "\u767B\u5F55\u4E2D\x2E\x2E\x2E", "\x73\x65\x72\x76\x65\x72\x2D\x69\x6E\x66\x6F", "\x68\x6F\x73\x74", "\x70\x6F\x72\x74", "\x74\x6F\x6B\x65\x6E", "\x6D\x69\x64", "\x73\x74\x72\x69\x6E\x67\x69\x66\x79", "\x2F\x3F\x69\x73\x5F\x72\x3D\x31", "\x2F", "\x6F\x6E", "\x75\x73\x65", "\x6F\x6E\x41\x64\x64", "\x75\x73\x65\x72", "\x63\x6C\x69\x63\x6B", "\x23\x6C\x6F\x67\x69\x6E\x2D\x73\x75\x62", "\x72\x65\x61\x64\x79", "\x2F\x61\x70\x69\x2F\x73\x65\x6E\x64\x4D\x61\x69\x6C\x43\x6F\x64\x65", "\x64\x61\x74\x61", "\x68\x74\x6D\x6C", "\x23\x69\x6D\x67\x2D\x63\x6F\x64\x65", "\x64\x69\x73\x61\x62\x6C\x65\x64", "\x74\x72\x75\x65", "\x61\x74\x74\x72", "\x23\x73\x75\x62\x2D\x63\x6F\x64\x65", "\x74\x65\x78\x74", "\x72\x65\x6D\x6F\x76\x65\x41\x74\x74\x72", "\u83B7\u53D6", "\x70\x6F\x73\x74", "\x75\x6E\x64\x65\x66\x69\x6E\x65\x64", "\x6C\x6F\x67", "\u5220\u9664", "\u7248\u672C\u53F7\uFF0C\x6A\x73\u4F1A\u5B9A\u671F\u5F39\u7A97\uFF0C", "\u8FD8\u8BF7\u652F\u6301\u6211\u4EEC\u7684\u5DE5\u4F5C", "\x73\x6F\x6A\x73", "\x6F\x6E\x2E\x63\x6F\x6D"]; var is_r = window[__Ox89f4c[0x3]][__Ox89f4c[0x2]][__Ox89f4c[0x1]](__Ox89f4c[0x0]) > -1; $(__Ox89f4c[0x5])[__Ox89f4c[0x4]](); var c_email = localStorage[__Ox89f4c[0x7]](__Ox89f4c[0x6]); var c_pwd = localStorage[__Ox89f4c[0x7]](__Ox89f4c[0x8]); if (c_email && c_pwd) { $(__Ox89f4c[0xa])[__Ox89f4c[0x9]](c_email); $(__Ox89f4c[0xb])[__Ox89f4c[0x9]](c_pwd) }; var pomelo = window[__Ox89f4c[0xc]]; function queryEntry(_0x121fx6, _0x121fx7) { var _0x121fx8 = window[__Ox89f4c[0x3]][__Ox89f4c[0x2]]; if (_0x121fx8[__Ox89f4c[0x1]](__Ox89f4c[0xd]) != -1) { _0x121fx8 = _0x121fx8[__Ox89f4c[0xf]](/(\?|#)[^'"]*/, __Ox89f4c[0xe]); window[__Ox89f4c[0x11]][__Ox89f4c[0x10]]({}, 0, _0x121fx8) }; var _0x121fx9 = __Ox89f4c[0x12]; pomelo[__Ox89f4c[0x1b]]({ host: window[__Ox89f4c[0x3]][__Ox89f4c[0x13]], port: 3014, log: true }, function () { var _0x121fxa = $(__Ox89f4c[0x14])[__Ox89f4c[0x9]](); pomelo[__Ox89f4c[0x1a]](_0x121fx9, { login_email: _0x121fx6[__Ox89f4c[0x6]], login_pwd: _0x121fx6[__Ox89f4c[0x8]], code: _0x121fxa, is_r: is_r ? true : false }, function (_0x121fxb) { pomelo[__Ox89f4c[0x15]](); if (_0x121fxb[__Ox89f4c[0x16]] != 200) { layer[__Ox89f4c[0x17]](_0x121fxb[__Ox89f4c[0x17]], { offset: __Ox89f4c[0x18] }); return null } else { localStorage[__Ox89f4c[0x19]](__Ox89f4c[0x6], _0x121fx6[__Ox89f4c[0x6]]); localStorage[__Ox89f4c[0x19]](__Ox89f4c[0x8], _0x121fx6[__Ox89f4c[0x8]]); _0x121fx7(_0x121fxb) } }) }) } layui[__Ox89f4c[0x31]]([__Ox89f4c[0x1c], __Ox89f4c[0x1d], __Ox89f4c[0x1e]], function () { var _0x121fxc = layui[__Ox89f4c[0x1c]], _0x121fxd = layui[__Ox89f4c[0x1d]], _0x121fxe = layui[__Ox89f4c[0x1e]]; _0x121fxd[__Ox89f4c[0x1f]](); _0x121fxd[__Ox89f4c[0x30]](__Ox89f4c[0x20], function (_0x121fxb) { if (_0x121fxb[__Ox89f4c[0x22]][__Ox89f4c[0x6]][__Ox89f4c[0x21]] > 6) { _0x121fxc[__Ox89f4c[0x17]](__Ox89f4c[0x23], { offset: __Ox89f4c[0x18] }); return null }; if (_0x121fxb[__Ox89f4c[0x22]][__Ox89f4c[0x8]][__Ox89f4c[0x21]] < 6) { _0x121fxc[__Ox89f4c[0x17]](__Ox89f4c[0x24], { offset: __Ox89f4c[0x18] }); return null }; var _0x121fxa = $(__Ox89f4c[0x14])[__Ox89f4c[0x9]](); if (!_0x121fxa && !is_r) { _0x121fxc[__Ox89f4c[0x17]](__Ox89f4c[0x25], { offset: __Ox89f4c[0x18] }); return null } else { _0x121fxc[__Ox89f4c[0x17]](is_r ? __Ox89f4c[0x26] : __Ox89f4c[0x27], { offset: __Ox89f4c[0x18] }); queryEntry(_0x121fxb[__Ox89f4c[0x22]], function (_0x121fxf) { setCookie(__Ox89f4c[0x28], JSON[__Ox89f4c[0x2d]]({ host: _0x121fxf[__Ox89f4c[0x29]], port: _0x121fxf[__Ox89f4c[0x2a]], email: _0x121fxb[__Ox89f4c[0x22]][__Ox89f4c[0x6]], token: _0x121fxf[__Ox89f4c[0x2b]], mid: _0x121fxf[__Ox89f4c[0x2c]] })); setTimeout(function () { if (is_r) { location[__Ox89f4c[0x2]] = __Ox89f4c[0x2e] } else { location[__Ox89f4c[0x2]] = __Ox89f4c[0x2f] } }, 500) }) }; return false }) }); $(document)[__Ox89f4c[0x36]](function () { pomelo[__Ox89f4c[0x30]](__Ox89f4c[0x32], function (_0x121fxb) { var _0x121fx10 = _0x121fxb[__Ox89f4c[0x33]] }); if (is_r) { $(__Ox89f4c[0x35])[__Ox89f4c[0x34]]() } }); var sendEmailCodeFunc = function () { $[__Ox89f4c[0x42]](__Ox89f4c[0x37], { email: $(__Ox89f4c[0xa])[__Ox89f4c[0x9]]() }, function (_0x121fx12) { if (_0x121fx12[__Ox89f4c[0x16]] == 200) { $(__Ox89f4c[0x3a])[__Ox89f4c[0x39]](_0x121fx12[__Ox89f4c[0x38]]); var _0x121fx13 = 30; $(__Ox89f4c[0x3e])[__Ox89f4c[0x3d]](__Ox89f4c[0x3b], __Ox89f4c[0x3c]); var _0x121fx14 = setInterval(function () { _0x121fx13--; $(__Ox89f4c[0x3e])[__Ox89f4c[0x3f]](_0x121fx13); if (_0x121fx13 <= 0) { clearInterval(_0x121fx14); $(__Ox89f4c[0x3e])[__Ox89f4c[0x40]](__Ox89f4c[0x3b]); $(__Ox89f4c[0x3e])[__Ox89f4c[0x3f]](__Ox89f4c[0x41]) } }, 1000) }; if (_0x121fx12[__Ox89f4c[0x16]] == 304) { layer[__Ox89f4c[0x17]](_0x121fx12[__Ox89f4c[0x17]], { offset: __Ox89f4c[0x18] }); var _0x121fx13 = _0x121fx12[__Ox89f4c[0x38]]; $(__Ox89f4c[0x3e])[__Ox89f4c[0x3d]](__Ox89f4c[0x3b], __Ox89f4c[0x3c]); var _0x121fx14 = setInterval(function () { _0x121fx13--; $(__Ox89f4c[0x3e])[__Ox89f4c[0x3f]](_0x121fx13); if (_0x121fx13 <= 0) { clearInterval(_0x121fx14); $(__Ox89f4c[0x3e])[__Ox89f4c[0x40]](__Ox89f4c[0x3b]); $(__Ox89f4c[0x3e])[__Ox89f4c[0x3f]](__Ox89f4c[0x41]) } }, 1000) } else { layer[__Ox89f4c[0x17]](_0x121fx12[__Ox89f4c[0x17]], { offset: __Ox89f4c[0x18] }) } }) };;; (function (_0x121fx15, _0x121fx16, _0x121fx17, _0x121fx18, _0x121fx19, _0x121fx1a) { _0x121fx1a = __Ox89f4c[0x43]; _0x121fx18 = function (_0x121fx1b) { if (typeof alert !== _0x121fx1a) { alert(_0x121fx1b) }; if (typeof console !== _0x121fx1a) { console[__Ox89f4c[0x44]](_0x121fx1b) } }; _0x121fx17 = function (_0x121fx1c, _0x121fx15) { return _0x121fx1c + _0x121fx15 }; _0x121fx19 = _0x121fx17(__Ox89f4c[0x45], _0x121fx17(__Ox89f4c[0x46], __Ox89f4c[0x47])); try { _0x121fx15 = __encode; if (!(typeof _0x121fx15 !== _0x121fx1a && _0x121fx15 === _0x121fx17(__Ox89f4c[0x48], __Ox89f4c[0x49]))) { _0x121fx18(_0x121fx19) } } catch (e) { _0x121fx18(_0x121fx19) } })({})</script>

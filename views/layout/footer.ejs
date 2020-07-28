@@ -1,0 +1,209 @@
+<div class="footer">
+    <!-- <p>云顶修仙 - <a style="color: #fff;" href="javascript:;" target="__bank">JOUCKS</a></p> -->
+    <p><a style="color: #fff;" href="http://yundingxx.com:8888" target="__bank">yundingxx.com</a></p>
+</div>
+<script src="http://ydxx.andiliba.cn/public/layui/layui.all.js"></script>
+<script src="http://ydxx.andiliba.cn/public/js/lib/jquery-1.8.0.min.js" type="text/javascript">
+</script>
+<script src="http://ydxx.andiliba.cn/public/js/lib/build/build.js" type="text/javascript">
+</script>
+<script src="http://ydxx.andiliba.cn/public/js/utils.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+    require('boot');
+</script>
+<script src="http://ydxx.andiliba.cn/public/js/moment.min.js"></script>
+<script src="http://ydxx.andiliba.cn/public/js/home.js" type="text/javascript"></script>
+<!-- <script src="js/home.js" type="text/javascript"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/index.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+<script>
+    // .pdf{
+    //     background - color: rgb(39, 43, 73);
+    //     min - height: 800px;
+    // }
+    // #progress - hp{
+    //     background - color: lightcoral;
+    // }
+    // #progress - mp{
+    //     background - color: cornflowerblue;
+    // }
+    // #progress - fn{
+    //     background - color: lightgoldenrodyellow;
+    // }
+
+    console.log(`${'\n'} %c 云顶修仙Online %c http://yundingxx.com ${'\n'}`, 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+    console.log(`${'\n'} %c joucksHua %c https://github.com/joucksHua ${'\n'}`, 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+    // let autoBat = localStorage.getItem("switchAutoBat")
+    // if (!autoBat) {
+    //     localStorage.setItem("switchAutoBat", "1")
+    //     $("#switchAutoBat").attr("checked", "true")
+    // } else {
+    //     if (autoBat == "-1") {
+    //         $("#switchAutoBat").removeAttr("checked")
+    //     } else {
+    //         $("#switchAutoBat").attr("checked", "true")
+    //     }
+    // }
+
+
+    var openSettingFunc = function () {
+        //示范一个公告层
+        layer.open({
+            type: 1
+            , title: false //不显示标题栏
+            , closeBtn: false
+            , area: '300px;'
+            , shade: 0.8
+            , id: 'setting-alert' //设定一个id，防止重复弹出
+            , btn: ['保存', '取消', '重置']
+            , btnAlign: 'c'
+            , moveType: 1 //拖拽模式，0或者1
+            , content: `
+                <div class='layui-row'>
+                <div class='layui-col-xs12'>
+                    <table lay-skin="nob" class=" layui-table eq-table">
+                    <colgroup>
+                        <col width="50%">
+                        <col width="50%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h5>属性称</h5>
+                            </td>
+                            <td>
+                                <h5>设置值</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>页面Title</td>
+                            <td><input type='text' id='s-title' class='s-input'  placeholder="例:XXX技术论坛" /></td>
+                        </tr>
+                        <tr>
+                            <td>HP值颜色</td>
+                            <td><input type='text' id='s-hp-color' class='s-input'  placeholder="例:#000" /></td>
+                        </tr>
+                        <tr>
+                            <td>MP值颜色</td>
+                            <td><input type='text' id='s-mp-color' class='s-input' placeholder="例:#000" /></td>
+                        </tr>
+                        <tr>
+                            <td>FN值颜色</td>
+                            <td><input type='text' id='s-fn-color' class='s-input' placeholder="例:#000" /></td>
+                        </tr>
+                        <tr>
+                            <td>body背景色</td>
+                            <td><input type='text' id='s-background-color' class='s-input' placeholder="例:#000" /></td>
+                        </tr>
+                        <tr>
+                            <td>主体背景色</td>
+                            <td><input type='text' id='s-pdf-color' class='s-input' placeholder="例:#000" /></td>
+                        </tr>
+                        <tr>
+                            <td>div的border-radius</td>
+                            <td><input type='text' id='s-div-radius' class='s-input' placeholder="例1:0,例2:45px" /></td>
+                        </tr>
+                        <tr>
+                            <td>主体屏幕宽度(默认80%)</td>
+                            <td><input type='text' id='s-main-width' class='s-input' placeholder="请填写百分比，例:80%" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+            `
+            , success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.find('.layui-layer-btn0').attr("onclick", "saveSettingFunc(1)");
+                btn.find('.layui-layer-btn2').attr("onclick", "saveSettingFunc(2)");
+                let json = localStorage.getItem("setting")
+                let data = JSON.parse(json)
+                if (data && data.style) {
+                    for (const item of data.style) {
+                        $(item[3]).val(item[2])
+                    }
+                } else {
+                    $("#s-hp-color").val("lightcoral")
+                    $("#s-mp-color").val("cornflowerblue")
+                    $("#s-fn-color").val("lightgoldenrodyellow")
+                    $("#s-background-color").val("none")
+                    $("#s-pdf-color").val("rgb(39,43,73)")
+                    $("#s-div-radius").val("none")
+                    $("#s-main-width").val("80%")
+                }
+            }
+        });
+    }
+    //保存配置
+    var saveSettingFunc = function (type) {
+        let newSetting = {};
+        if (type == 1) {
+            localStorage.setItem('page-title', $("#s-title").val())
+            newSetting = {
+                style:
+                    [
+                        ["#progress-hp", "background-color", $("#s-hp-color").val(), "#s-hp-color"],
+                        ["#progress-mp", "background-color", $("#s-mp-color").val(), "#s-mp-color"],
+                        ["#progress-fn", "background-color", $("#s-fn-color").val(), "#s-fn-color"],
+                        ["body", "background-color", $("#s-background-color").val(), "#s-background-color"],
+                        [".pdf", "background-color", $("#s-pdf-color").val(), "#s-pdf-color"],
+                        ["div", "border-radius", $("#s-div-radius").val(), "#s-div-radius"],
+                        ["#main", "width", $("#s-main-width").val(), "#s-main-width"],
+                    ]
+            }
+        } else {
+            localStorage.removeItem('page-title')
+            //重置
+            newSetting = {
+                style:
+                    [
+                        ["#progress-hp", "background-color", "lightcoral", "#s-hp-color"],
+                        ["#progress-mp", "background-color", "cornflowerblue", "#s-mp-color"],
+                        ["#progress-fn", "background-color", "lightgoldenrodyellow", "#s-fn-color"],
+                        ["body", "background-color", "none", "#s-background-color"],
+                        [".pdf", "background-color", "aliceblue", "#s-pdf-color"],
+                        ["div", "border-radius", "none", "#s-div-radius"],
+                        ["#main", "width", "80%", "#s-main-width"],
+                    ]
+            }
+        }
+        localStorage.setItem("setting", JSON.stringify(newSetting))
+        layer.msg("刷新后生效", { offset: "50%" })
+    }
+
+    let json = localStorage.getItem("setting")
+    if (json) {
+        let data = JSON.parse(json)
+        for (const item of data.style) {
+            $(item[0]).css(item[1], item[2])
+        }
+    }
+    let pageTitle = localStorage.getItem('page-title')
+    if (pageTitle) {
+        document.title = pageTitle
+    }
+    var batBodyFlag = false;
+    function switchMainBody(type) {
+        if (type && type === 1) {
+            $("#bat-body").fadeIn(1000)
+            $("#map-body").hide();
+            global.is_map = false
+            return;
+        }
+        if (!batBodyFlag) {
+            $("#bat-body").fadeIn(1000)
+            $("#map-body").hide();
+            global.is_map = false
+        } else {
+            $("#bat-body").hide();
+            global.is_map = true
+            $("#map-body").fadeIn(1000)
+        }
+        batBodyFlag = !batBodyFlag;
+    }
+</script>
+</body>
+
+</html>
