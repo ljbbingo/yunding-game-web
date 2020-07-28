@@ -1,0 +1,59 @@
+<div class="layui-row">
+    <div class="row">
+        <div class="layui-col-md2">
+            <input type="number" min="1" value="1" id="tower_num" style="width:80%">
+        </div>
+        <div class="layui-col-md2"> <a onclick="startBatFunc('tower')">开始爬塔</a>
+        </div>
+        <!-- <div class="layui-col-md8">
+            每日前5次为奖励有奖励结算
+        </div> -->
+
+    </div>
+    <div class="layui-row" id="screen-list">
+
+    </div>
+    <div class="layui-col-sm6" style="text-align: center; overflow-y: auto;max-height: 230px;">
+        <h5></h5>
+        <table lay-skin="nob" class="layui-table">
+            <colgroup>
+                <col width="5%">
+                <col width="25%">
+                <col width="40%">
+                <col width="10%">
+                <col width="20%">
+            </colgroup>
+            <tbody id="team-list">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="layui-col-sm6" style="text-align: center; ">
+        <div class="layui-col-xs4"><a class="layui-btn layui-btn-xs" onclick="createdTeamFunc()"> 创建队伍</a> </div>
+        <div class="layui-col-xs4"><a style="color:cadetblue;">↓当前场景↓</a> </div>
+        <div class="layui-col-xs4"><a class="layui-btn layui-btn-xs" onclick="startBatFunc(1)"> 开始战斗</a> </div>
+        <div class="layui-col-xs4"><a class="layui-btn layui-btn-xs" onclick="leaveTeamFunc()">
+                离开队伍</a> </div>
+        <div class="layui-col-xs4"><span id="bat-screen-id" data-id=''>请选择</span> </div>
+
+        <div class="layui-col-xs4"><a class="layui-btn layui-btn-xs" onclick="openStartBatFor()"> 循环开关</a> </div>
+        <hr>
+        <div class="layui-col-xs6">
+            <span>↓我的队伍↓</span>
+        </div>
+        <div class="layui-col-xs6">
+            <a onclick="showMyTeamFunc(0)" id="show-my-team">隐藏</a>
+            &nbsp;&nbsp;&nbsp;
+            <a onclick="showMyTeamFunc(1)" id="show-my-team">显示</a>
+        </div>
+        <table lay-skin="nob" class="layui-table">
+            <colgroup>
+                <col width="50%">
+                <col width="50%">
+            </colgroup>
+            <tbody id="my-team-list">
+
+            </tbody>
+        </table>
+    </div>
+</div>
